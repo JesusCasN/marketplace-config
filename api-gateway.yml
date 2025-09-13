@@ -1,0 +1,68 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: auth
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/auth/**,/api/users/**,/api/admin/users/**
+              filters:
+                - StripPrefix=1
+
+            - id: productos
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/productos/**
+              filters:
+                - StripPrefix=1
+
+            - id: ordenes
+              uri: http://localhost:8083
+              predicates:
+                - Path=/api/pedidos/**
+              filters:
+                - StripPrefix=1
+
+            - id: direcciones
+              uri: http://localhost:8085
+              predicates:
+                - Path=/api/direcciones/**
+              filters:
+                - StripPrefix=1
+
+            - id: pagos
+              uri: http://localhost:8086
+              predicates:
+                - Path=/api/pagos/**
+              filters:
+                - StripPrefix=1
+
+            - id: envios
+              uri: http://localhost:8087
+              predicates:
+                - Path=/api/envios/**
+              filters:
+                - StripPrefix=1
+
+          globalcors:
+            corsConfigurations:
+              "[/**]":
+                allowedOrigins: "*"
+                allowedMethods: "*"
+                allowedHeaders: "*"
+          httpclient:
+            connect-timeout: 3000
+            response-timeout: 5s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
