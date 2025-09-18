@@ -59,9 +59,7 @@ server:
 management:
   endpoint:
     gateway:
-      enabled: true
-  endpoints:
+      access: read-only
     web:
       exposure:
         include: "*"
-
