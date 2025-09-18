@@ -10,8 +10,6 @@ server:
               uri: http://localhost:8081
               predicates:
                 - Path=/api/auth/**,/api/users/**,/api/admin/users/**
-              filters:
-                - StripPrefix=1
 
             - id: productos
               uri: http://localhost:8082
