@@ -4,36 +4,38 @@ server:
 spring:
   cloud:
     gateway:
-      routes:
-        - id: auth
-          uri: http://auth-service:8081
-          predicates:
-            - Path=/api/auth/**,/api/users/**,/api/admin/users/**
+      server:
+        webflux:
+          routes:
+            - id: auth
+              uri: http://auth-service:8081
+              predicates:
+                - Path=/api/auth/**,/api/users/**,/api/admin/users/**
 
-        - id: productos
-          uri: http://productos-service:8082
-          predicates:
-            - Path=/api/productos/**
+            - id: productos
+              uri: http://productos-service:8082
+              predicates:
+                - Path=/api/productos/**
 
-        - id: ordenes
-          uri: http://ordenes-service:8083
-          predicates:
-            - Path=/api/pedidos/**
+            - id: ordenes
+              uri: http://ordenes-service:8083
+              predicates:
+                - Path=/api/pedidos/**
 
-        - id: direcciones
-          uri: http://direcciones-service:8085
-          predicates:
-            - Path=/api/direcciones/**
+            - id: direcciones
+              uri: http://direcciones-service:8085
+              predicates:
+                - Path=/api/direcciones/**
 
-        - id: pagos
-          uri: http://pagos-service:8086
-          predicates:
-            - Path=/api/pagos/**
+            - id: pagos
+              uri: http://pagos-service:8086
+              predicates:
+                - Path=/api/pagos/**
 
-        - id: envios
-          uri: http://envios-service:8087
-          predicates:
-            - Path=/api/envios/**
+            - id: envios
+              uri: http://envios-service:8087
+              predicates:
+                - Path=/api/envios/**
 
           globalcors:
             corsConfigurations:
