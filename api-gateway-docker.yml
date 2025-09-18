@@ -35,13 +35,20 @@ spring:
           predicates:
             - Path=/api/envios/**
 
-      globalcors:
-        corsConfigurations:
-          "[/**]":
-            allowedOrigins: ${app.cors.allowed-origins}
-            allowedMethods: ${app.cors.allowed-methods}
-            allowedHeaders: ${app.cors.allowed-headers}
+          globalcors:
+            corsConfigurations:
+              "[/**]":
+                allowedOrigins: "*"
+                allowedMethods: "*"
+                allowedHeaders: "*"
+          httpclient:
+            connect-timeout: 10000
+            response-timeout: 60s
 
-      httpclient:
-        connect-timeout: 10000
-        response-timeout: 60s
+management:
+  endpoint:
+    gateway:
+      access: read-only
+    web:
+      exposure:
+        include: "*"
