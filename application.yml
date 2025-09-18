@@ -1,0 +1,20 @@
+# marketplace-config/application.yml
+# Config común heredada por todos los microservicios y el gateway
+management:
+  endpoints:
+    web:
+      exposure:
+        # Incluye /actuator/gateway/routes para inspeccionar rutas del Gateway
+        include: health,info,gateway,refresh,busrefresh
+
+# Spring Cloud Bus (Kafka) por defecto en local
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+# CORS de demo reutilizable (el Gateway lo lee abajo vía placeholders si quieres)
+app:
+  cors:
+    allowed-origins: "*"
+    allowed-methods: "*"
+    allowed-headers: "*"

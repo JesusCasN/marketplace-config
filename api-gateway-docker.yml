@@ -2,60 +2,48 @@ server:
   port: 8080
 
 spring:
-  config:
-    activate:
-      on-profile: docker
   application:
     name: api-gateway
   cloud:
     gateway:
-      server:
-        webflux:
-          routes:
+      routes:
+        - id: auth
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api/auth/**,/api/users/**,/api/admin/users/**
 
-            - id: auth
-              uri: http://auth-service:8081
-              predicates:
-                - Path=/api/auth/**,/api/users/**,/api/admin/users/**
+        - id: productos
+          uri: http://productos-service:8082
+          predicates:
+            - Path=/api/productos/**
 
-            - id: productos
-              uri: http://productos-service:8082
-              predicates:
-                - Path=/api/productos/**
+        - id: ordenes
+          uri: http://ordenes-service:8083
+          predicates:
+            - Path=/api/pedidos/**
 
-            - id: ordenes
-              uri: http://ordenes-service:8083
-              predicates:
-                - Path=/api/pedidos/**
+        - id: direcciones
+          uri: http://direcciones-service:8085
+          predicates:
+            - Path=/api/direcciones/**
 
-            - id: direcciones
-              uri: http://direcciones-service:8085
-              predicates:
-                - Path=/api/direcciones/**
+        - id: pagos
+          uri: http://pagos-service:8086
+          predicates:
+            - Path=/api/pagos/**
 
-            - id: pagos
-              uri: http://pagos-service:8086
-              predicates:
-                - Path=/api/pagos/**
+        - id: envios
+          uri: http://envios-service:8087
+          predicates:
+            - Path=/api/envios/**
 
-            - id: envios
-              uri: http://envios-service:8087
-              predicates:
-                - Path=/api/envios/**
+      globalcors:
+        corsConfigurations:
+          "[/**]":
+            allowedOrigins: ${app.cors.allowed-origins}
+            allowedMethods: ${app.cors.allowed-methods}
+            allowedHeaders: ${app.cors.allowed-headers}
 
-          globalcors:
-            corsConfigurations:
-              "[/**]":
-                allowedOrigins: "*"
-                allowedMethods: "*"
-                allowedHeaders: "*"
-          httpclient:
-            connect-timeout: 10000
-            response-timeout: 60s
-
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
+      httpclient:
+        connect-timeout: 10000
+        response-timeout: 60s
