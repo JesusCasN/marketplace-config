@@ -3,25 +3,33 @@ server:
 
 spring:
   datasource:
-    # Default docker; también acepta override por SPRING_DATASOURCE_URL
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://auth-postgres:5432/authdb}
-    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    # Conexión a PostgreSQL. El host debe ser el nombre del servicio Docker: "postgres"
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
-  jpa:
-    hibernate:
-      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
-    show-sql: ${SPRING_JPA_SHOW_SQL:true}
-    properties:
-      hibernate.format_sql: true
+    driver-class-name: org.postgresql.Driver
 
-logging:
-  level:
-    org.hibernate.SQL: ${HIBERNATE_SQL_LOG:INFO}
-    org.hibernate.type.descriptor.sql.BasicBinder: ${HIBERNATE_BINDER_LOG:INFO}
+    jpa:
+      hibernate:
+        ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}  # Por defecto "update", configurable con variable
+      show-sql: ${SPRING_JPA_SHOW_SQL:true}  # Muestra las consultas SQL en consola
+      properties:
+        hibernate:
+          format_sql: true  # Formatea el SQL para mayor legibilidad
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
 
-jwt:
-  secret: ${JWT_SECRET}
-  access-token:
-    expiration-ms: ${JWT_ACCESS_TOKEN_EXPIRATION_MS:900000}
-  refresh-token:
-    expiration-ms: ${JWT_REFRESH_TOKEN_EXPIRATION_MS:604800000}
+  # Nivel de logs para Hibernate (útil en desarrollo)
+  logging:
+    level:
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+  # Configuración del token JWT
+  jwt:
+    secret: ${JWT_SECRET}  # Se recomienda cargar desde variable por seguridad
+    access-token:
+      expiration-ms: ${JWT_ACCESS_TOKEN_EXPIRATION_MS}  # Tiempo de expiración del access token (milisegundos)
+    refresh-token:
+      expiration-ms: ${JWT_REFRESH_TOKEN_EXPIRATION_MS}  # Tiempo de expiración del refresh token (milisegundos)
+
+
