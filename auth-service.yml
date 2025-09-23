@@ -4,10 +4,10 @@ server:
 spring:
   datasource:
     # Default local; si exportas SPRING_DATASOURCE_URL, lo sobreescribe
-    url: jdbc:postgresql://localhost:5433/authdb
-    username: postgres
-    password: Chuchoska387
-    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5433/authdb
+#    username: postgres
+#    password: Chuchoska387
+#    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
@@ -24,7 +24,7 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 jwt:
-  secret: MiSuperClaveSecretaParaJWT12345678901234567890
+#  secret: MiSuperClaveSecretaParaJWT12345678901234567890
   access-token:
     expiration-ms: 900000     # 15 min por defecto
   refresh-token:
