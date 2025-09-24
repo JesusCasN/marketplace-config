@@ -3,7 +3,6 @@ server:
 
 spring:
   datasource:
-    # Default local; si exportas SPRING_DATASOURCE_URL, lo sobreescribe
 #    url: jdbc:postgresql://localhost:5433/authdb
 #    username: postgres
 #    password: Chuchoska387
