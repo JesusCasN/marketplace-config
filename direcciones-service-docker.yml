@@ -1,0 +1,31 @@
+server:
+  port: 8085
+
+spring:
+  datasource:
+    # Conexión a PostgreSQL. El host debe ser el nombre del servicio Docker: "postgres"
+#    url: ${SPRING_DATASOURCE_URL}
+#    username: ${SPRING_DATASOURCE_USERNAME}
+#    password: ${SPRING_DATASOURCE_PASSWORD}
+#    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: ${SPRING_JPA_SHOW_SQL:true}  # Muestra las consultas SQL en consola
+    properties:
+      hibernate:
+        format_sql: true  # Formatea el SQL para mayor legibilidad
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+# Nivel de logs para Hibernate (útil en desarrollo)
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# Configuración del token JWT
+#jwt:
+#  secret: ${JWT_SECRET}
+
+
