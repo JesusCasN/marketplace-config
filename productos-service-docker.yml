@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+#    url: ${SPRING_DATASOURCE_URL}
+#    username: ${SPRING_DATASOURCE_USERNAME}
+#    password: ${SPRING_DATASOURCE_PASSWORD}
+#    driver-class-name: org.postgresql.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}  # Por defecto "update", configurable con variable
+      show-sql: ${SPRING_JPA_SHOW_SQL:true}  # Muestra las consultas SQL en consola
+      properties:
+        hibernate:
+          format_sql: true  # Formatea el SQL para mayor legibilidad
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# Configuración del token JWT
+#jwt:
+#  secret: ${JWT_SECRET}

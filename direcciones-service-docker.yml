@@ -18,7 +18,6 @@ spring:
         format_sql: true  # Formatea el SQL para mayor legibilidad
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
-# Nivel de logs para Hibernate (útil en desarrollo)
 logging:
   level:
     org.hibernate.SQL: DEBUG
