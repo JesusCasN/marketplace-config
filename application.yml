@@ -1,11 +1,19 @@
 # marketplace-config/application.yml
 # Config común heredada por todos los microservicios y el gateway
 management:
+  server:
+    port: 9090          # puerto solo de gestión dentro del contenedor
+    address: 127.0.0.1  # no se expone fuera del contenedor
   endpoints:
     web:
       exposure:
         # Incluye /actuator/gateway/routes para inspeccionar rutas del Gateway
         include: health,info,gateway,refresh,busrefresh
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
 
 # Spring Cloud Bus (Kafka) por defecto en local
 spring:
