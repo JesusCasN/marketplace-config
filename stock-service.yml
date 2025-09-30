@@ -1,0 +1,29 @@
+server:
+  port: 8084
+
+  kafka:
+    consumer:
+      group-id: stock-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+        spring.json.trusted.packages: "com.marketplace.app.*"
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: com.marketplace.app.ordenes.event.pedido.PedidoCreadoEvent
+
+service:
+  productos:
+    url: http://productos-service:8082
+
+#  token: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGVtYWlsLmNvbSIsInVzZXJJZCI6MSwicm9sZXMiOlsiVkVOREVET1IiLCJBRE1JTiIsIkNPTVBSQURPUiJdLCJpYXQiOjE3NTIyMDg3ODgsImV4cCI6MTc1MjIwOTY4OH0.613Yc8aXr9EuihpsZwMuUsgPeRC--Uz_ci5GLkWRuZo
+
+logging:
+  level:
+    feign:
+      client: DEBUG
+    org:
+      springframework:
+        kafka: INFO
+      org.springframework.boot.context.config: DEBUG
