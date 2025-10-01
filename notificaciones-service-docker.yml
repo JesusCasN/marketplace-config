@@ -1,0 +1,39 @@
+server:
+  port: 8089
+
+spring:
+  kafka:
+    bootstrap-servers: kafka:29092
+    listener:
+      missing-topics-fatal: false
+    consumer:
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring:
+          deserializer:
+            value:
+              delegate:
+                class: org.springframework.kafka.support.serializer.JsonDeserializer
+          json:
+            trusted:
+              packages: "com.marketplace.app.*"
+            use:
+              type:
+                headers: false
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  consumer-groups:
+    pedido-enviado: notificacion-envio-group
+    pedido-entregado: notificacion-entregado-group
+    pedido-cancelado: notificacion-cancelado-group
+
+# Dentro del cluster (usa nombres de servicio)
+clientes:
+  pedidos: ${CLIENTES_PEDIDOS}
+  email: ${CLIENTES_EMAIL}
+  push: ${CLIENTES_PUSH}
+#  token: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VySWQiOjEsInJvbGVzIjpbIkNPTVBSQURPUiIsIlZFTkRFRE9SIiwiQURNSU4iXSwiaWF0IjoxNzU3MDM2ODcwLCJleHAiOjE3NTcwNDA0NzB9.rUG95CVVUKqK67KOoWCp9oU7KWTms1fdBCRYFufDkdE"
