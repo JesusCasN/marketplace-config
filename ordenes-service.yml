@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-#    url: jdbc:mysql://localhost:3307/ordenesdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://localhost:3308/ordenesdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 #    username: root
 #    password: Chuchoska387
 #    driver-class-name: com.mysql.cj.jdbc.Driver
@@ -50,3 +50,9 @@ logging:
 
 jwt:
 #  secret: MiSuperClaveSecretaParaJWT12345678901234567890
+
+clients:
+  productos:
+    base-url: http://localhost:8082
+  direcciones:
+    base-url: http://localhost:8085

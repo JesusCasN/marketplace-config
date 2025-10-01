@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-#    url: jdbc:postgresql://localhost:5432/productosdb
+#    url: jdbc:postgresql://localhost:5435/productosdb
 #    username: postgres
 #    password: Chuchoska387
 #    driver-class-name: org.postgresql.Driver
@@ -19,4 +19,3 @@ spring:
 
 jwt:
 #  secret: MiSuperClaveSecretaParaJWT12345678901234567890
-
