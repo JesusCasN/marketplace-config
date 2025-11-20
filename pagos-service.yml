@@ -3,7 +3,7 @@ server:
 
 spring:
 #  datasource:
-#    url: jdbc:mysql://localhost:3307/pagosdb
+#    url: jdbc:mysql://localhost:3309/pagosdb
 #    username: root
 #    password: Chuchoska387
 #    driver-class-name: com.mysql.cj.jdbc.Driver
