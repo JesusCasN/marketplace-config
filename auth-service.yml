@@ -25,6 +25,6 @@ logging:
 jwt:
 #  secret: MiSuperClaveSecretaParaJWT12345678901234567890
   access-token:
-    expiration-ms: 900000     # 15 min por defecto
+    expiration-ms: 10800000 # 3 horas por defecto
   refresh-token:
     expiration-ms: 604800000 # 7 días
