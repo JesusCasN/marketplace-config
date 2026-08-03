@@ -1,6 +1,13 @@
 server:
   port: 8085
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-service:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
 spring:
   datasource:
     # Conexión a PostgreSQL. El host debe ser el nombre del servicio Docker: "postgres"

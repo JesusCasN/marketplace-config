@@ -1,9 +1,14 @@
 server:
   port: 8087
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
 spring:
   datasource:
-#    url: jdbc:postgresql://localhost:5432/enviosdb
+#    url: jdbc:postgresql://localhost:5436/enviosdb
 #    username: postgres
 #    password: Chuchoska387
 #    driver-class-name: org.postgresql.Driver

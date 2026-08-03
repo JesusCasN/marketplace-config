@@ -1,6 +1,13 @@
 server:
   port: 8087
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-service:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
 spring:
   datasource:
 #    url: jdbc:postgresql://envios-postgres:5432/enviosdb
