@@ -52,9 +52,3 @@ logging:
 
 jwt:
 #  secret: MiSuperClaveSecretaParaJWT12345678901234567890
-
-clients:
-  productos:
-    base-url: http://productos-service:8082
-  direcciones:
-    base-url: http://direcciones-service:8085

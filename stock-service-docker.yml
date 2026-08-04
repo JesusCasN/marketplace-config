@@ -29,12 +29,6 @@ spring:
             connect-timeout: 5000
             read-timeout: 5000
 
-service:
-  productos:
-    url: http://productos-service:8082
-
-#  token: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGVtYWlsLmNvbSIsInVzZXJJZCI6MSwicm9sZXMiOlsiVkVOREVET1IiLCJBRE1JTiIsIkNPTVBSQURPUiJdLCJpYXQiOjE3NTIyMDg3ODgsImV4cCI6MTc1MjIwOTY4OH0.613Yc8aXr9EuihpsZwMuUsgPeRC--Uz_ci5GLkWRuZo
-
 logging:
   level:
     feign:
