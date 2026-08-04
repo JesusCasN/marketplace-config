@@ -20,7 +20,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    # database-platform: no se declara a proposito. Hibernate lo deduce de la conexion JDBC,
+    # y fijarlo a mano rompe en cada actualizacion: MySQL8Dialect se elimino en Hibernate 6
+    # y dejo ordenes y pagos sin arrancar tras migrar a Spring Boot 4.
 
   kafka:
     producer:
