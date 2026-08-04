@@ -15,14 +15,17 @@ spring:
 #    password: ${SPRING_DATASOURCE_PASSWORD}
 #    driver-class-name: org.postgresql.Driver
 
-    jpa:
+  # OJO: este bloque colgaba de `datasource`, o sea spring.datasource.jpa.*, que Spring
+  # ignora en silencio. En el perfil docker no se aplicaba nada de aqui; solo funcionaba
+  # porque productos-service.yml, que Config Server fusiona con este, lo tiene bien.
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}  # el esquema lo gestiona Flyway (db/migration)
+    show-sql: ${SPRING_JPA_SHOW_SQL:true}  # Muestra las consultas SQL en consola
+    properties:
       hibernate:
-        ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}  # el esquema lo gestiona Flyway (db/migration)
-      show-sql: ${SPRING_JPA_SHOW_SQL:true}  # Muestra las consultas SQL en consola
-      properties:
-        hibernate:
-          format_sql: true  # Formatea el SQL para mayor legibilidad
-      database-platform: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true  # Formatea el SQL para mayor legibilidad
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 logging:
   level:
