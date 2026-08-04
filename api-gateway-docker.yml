@@ -15,32 +15,32 @@ spring:
         webflux:
           routes:
             - id: auth
-              uri: http://auth-service:8081
+              uri: lb://auth-service
               predicates:
                 - Path=/api/auth/**,/api/users/**,/api/admin/users/**
 
             - id: productos
-              uri: http://productos-service:8082
+              uri: lb://productos-service
               predicates:
                 - Path=/api/productos/**
 
             - id: ordenes
-              uri: http://ordenes-service:8083
+              uri: lb://ordenes-service
               predicates:
                 - Path=/api/pedidos/**
 
             - id: direcciones
-              uri: http://direcciones-service:8085
+              uri: lb://direcciones-service
               predicates:
                 - Path=/api/direcciones/**
 
             - id: pagos
-              uri: http://pagos-service:8086
+              uri: lb://pagos-service
               predicates:
                 - Path=/api/pagos/**
 
             - id: envios
-              uri: http://envios-service:8087
+              uri: lb://envios-service
               predicates:
                 - Path=/api/envios/**
 
