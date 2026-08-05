@@ -44,12 +44,10 @@ spring:
               predicates:
                 - Path=/api/envios/**
 
-          globalcors:
-            corsConfigurations:
-              "[/**]":
-                allowedOrigins: "*"
-                allowedMethods: "*"
-                allowedHeaders: "*"
+          # CORS retirado de aqui en la Fase 5. Ahora se define en Java, en
+          # GatewaySecurityConfig del api-gateway, con lista blanca de origenes en vez
+          # de "*" y junto a las reglas de autorizacion a las que acompana. Tenerlo en
+          # dos sitios solo garantizaba que antes o despues discreparan.
           httpclient:
             connect-timeout: 10000
             response-timeout: 60s
